@@ -1,0 +1,5 @@
+.idea/
+vendor/
+.vagrant/
+composer.lock
+*-cloudimg-console.log
