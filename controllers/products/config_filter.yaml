@@ -1,0 +1,6 @@
+scopes:
+
+    enabled:
+        label: Available
+        type: checkbox
+        conditions: is_enabled = 1

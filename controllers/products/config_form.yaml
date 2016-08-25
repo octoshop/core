@@ -1,0 +1,27 @@
+# Record name
+name: Product
+
+# Model Form Field configuration
+form: $/octoshop/core/models/product/fields.yaml
+
+# Model Class name
+modelClass: Octoshop\Core\Models\Product
+
+# Default redirect location
+defaultRedirect: octoshop/core/products
+
+# Create page
+create:
+    title: Create Product
+    redirect: octoshop/core/products/update/:id
+    redirectClose: octoshop/core/products
+
+# Update page
+update:
+    title: Edit Product
+    redirect: octoshop/core/products
+    redirectClose: octoshop/core/products
+
+# Preview page
+preview:
+    title: Preview Product

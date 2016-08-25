@@ -28,6 +28,15 @@ class Plugin extends PluginBase
                     'octoshop.core.*',
                     'feegleweb.octoshop.*',
                 ],
+                'sideMenu' => [
+                    'products' => [
+                        'label'       => 'Products',
+                        'url'         => Backend::url('octoshop/core/products'),
+                        'icon'        => 'icon-cubes',
+                        'order'       => 200,
+                        'permissions' => ['octoshop.core.access_products']
+                    ],
+                ],
             ],
         ];
     }

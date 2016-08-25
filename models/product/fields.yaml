@@ -1,0 +1,59 @@
+fields:
+    title:
+        label: Title
+        span: left
+        placeholder: New product name
+        required: true
+
+    slug:
+        label: Slug
+        span: right
+        required: true
+        preset:
+            field: title
+            type: slug
+
+    toolbar:
+        type: partial
+        path: product_toolbar
+        cssClass: collapse-visible
+
+secondaryTabs:
+    defaultTab: Manage
+    stretch: true
+    fields:
+        description:
+            tab: Edit
+            type: richeditor
+            stretch: true
+
+        intro:
+            label: Introductory Text
+            type: richeditor
+            span: left
+            placeholder: Enter a short description to introduce people to your product
+
+        is_enabled:
+            label: Product Visibility
+            type: switch
+            span: right
+
+        available_at:
+            label: Available from
+            type: datepicker
+            span: right
+            cssClass: checkbox-align
+
+        price:
+            label: Price
+            type: number
+            span: right
+            cssClass: checkbox-align
+
+        images:
+            span: right
+            label: Images
+            type: Backend\FormWidgets\FileUpload
+            mode: image
+            imageHeight: 120
+            imageWidth: 120

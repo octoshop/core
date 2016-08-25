@@ -1,0 +1,28 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    title:
+        label: Title
+        searchable: true
+    slug:
+        label: Slug
+        searchable: false
+    available_at:
+        label: Available From
+        searchable: true
+        type: date
+    created_at:
+        label: Date Created
+        searchable: true
+        type: date
+        invisible: true
+    updated_at:
+        label: Last Update
+        searchable: true
+        type: date
+        invisible: true
