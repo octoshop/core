@@ -16,6 +16,16 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerMarkupTags()
+    {
+        return [
+            'filters' => [
+                'currency' =>  ['Octoshop\Core\Util\Currency', 'format'],
+                'thumbnail' => ['Octoshop\Core\Util\Image', 'thumbnail'],
+            ],
+        ];
+    }
+
     public function registerNavigation()
     {
         return [
@@ -37,6 +47,20 @@ class Plugin extends PluginBase
                         'permissions' => ['octoshop.core.access_products']
                     ],
                 ],
+            ],
+        ];
+    }
+
+    public function registerSettings()
+    {
+        return [
+            'currency' => [
+                'label'       => 'Currency',
+                'description' => 'Set the currency code and symbol used on your shop.',
+                'category'    => 'octoshop.core::lang.plugin.name',
+                'icon'        => 'icon-gbp',
+                'class'       => 'Octoshop\Core\Models\CurrencySettings',
+                'order'       => 160,
             ],
         ];
     }

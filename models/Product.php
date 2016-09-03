@@ -8,6 +8,7 @@ use Carbon\Carbon;
  */
 class Product extends Model
 {
+    use \Octoshop\Core\Util\UrlMaker;
     use \October\Rain\Database\Traits\Validation;
 
     /**
@@ -51,7 +52,7 @@ class Product extends Model
         'images' => ['System\Models\File']
     ];
 
-    public $url;
+    protected $urlComponentName = 'shopProduct';
 
 
     #############################################################

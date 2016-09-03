@@ -1,0 +1,39 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Currency name
+        default: Pound sterling
+    code:
+        label: ISO Code
+        span: left
+        default: GBP
+    decimals:
+        label: Decimal places
+        span: right
+        default: 2
+    prefix:
+        label: Left symbol
+        default: £
+        span: left
+        containerAttributes:
+            style: width:24%;
+    suffix:
+        label: Right symbol
+        span: left
+        containerAttributes:
+            style: width:24%;clear:none;margin-left:0.5%;
+    thousand_separator:
+        label: Thousands separator
+        span: right
+        default: ,
+        containerAttributes:
+            style: width:24%;
+    decimal_separator:
+        label: Decimal point
+        span: right
+        default: .
+        containerAttributes:
+            style: width:24%;clear:none;margin-right:0.5%;
