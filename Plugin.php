@@ -1,10 +1,13 @@
 <?php namespace Octoshop\Core;
 
 use Backend;
+use Event;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
+    protected $components = [];
+
     public function pluginDetails()
     {
         return [
@@ -18,10 +21,19 @@ class Plugin extends PluginBase
 
     public function registerComponents()
     {
-        return [
+        $this->components = [
             'Octoshop\Core\Components\Products' => 'shopProducts',
             'Octoshop\Core\Components\Product' => 'shopProduct',
         ];
+
+        Event::fire('octoshop.core.extendComponents', [$this]);
+
+        return $this->components;
+    }
+
+    public function addComponents($components)
+    {
+        return $this->components = array_replace($this->components, $components);
     }
 
     public function registerMarkupTags()
