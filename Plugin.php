@@ -1,12 +1,20 @@
 <?php namespace Octoshop\Core;
 
+use App;
 use Backend;
 use Event;
+use Illuminate\Foundation\AliasLoader;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
     protected $components = [];
+
+    public function boot()
+    {
+        App::register('\Octoshop\Core\BasketServiceProvider');
+        AliasLoader::getInstance()->alias('Cart', '\Octoshop\Core\Facades\Cart');
+    }
 
     public function pluginDetails()
     {
@@ -22,6 +30,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         $this->components = [
+            'Octoshop\Core\Components\Basket' => 'shopBasket',
             'Octoshop\Core\Components\Products' => 'shopProducts',
             'Octoshop\Core\Components\Product' => 'shopProduct',
         ];

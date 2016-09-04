@@ -1,0 +1,14 @@
+<tr class="ocshop-row-{{ item.rowId }}">
+    <td>
+        <button type="submit" class="btn btn-xs btn-default"
+                data-request="{{ __SELF__ }}::onRemoveProduct"
+                data-request-data="row_id: '{{ item.rowId }}'"
+                data-request-success="$('.ocshop-row-{{ item.rowId }}').remove(); $('.ocshop-total').text(data.total); $('.ocshop-count').text(data.count);">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </td>
+    <td><a href="{{ item.product.url }}">{{ item.name }}</a></td>
+    <td>{{ item.qty }}</td>
+    <td>{{ item.price|currency }}</td>
+    <td>{{ item.subtotal|currency }}</td>
+</tr>

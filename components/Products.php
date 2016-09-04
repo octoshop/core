@@ -6,8 +6,6 @@ use Octoshop\Core\Models\Product;
 
 class Products extends ComponentBase
 {
-    public $basket;
-
     public $products;
 
     public function componentDetails()
