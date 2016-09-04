@@ -16,6 +16,14 @@ class Plugin extends PluginBase
         ];
     }
 
+    public function registerComponents()
+    {
+        return [
+            'Octoshop\Core\Components\Products' => 'shopProducts',
+            'Octoshop\Core\Components\Product' => 'shopProduct',
+        ];
+    }
+
     public function registerMarkupTags()
     {
         return [
