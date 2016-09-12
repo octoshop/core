@@ -18,6 +18,9 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder "./", "/var/www/octoshop.dev/plugins/octoshop/core",
         create: true, group: "www-data", owner: "www-data"
         #disabled: true
+    config.vm.synced_folder "../treecat", "/var/www/octoshop.dev/plugins/octoshop/treecat",
+        create: true, group: "www-data", owner: "www-data"
+        #disabled: true
 
     config.vm.provision :shell, path: "vagrant/bootstrap.sh"
 end
