@@ -52,11 +52,14 @@ class Basket extends ComponentBase
 
     public function onAddProduct()
     {
-        $qty = post('quantity', 1);
-
         $product = ShopProduct::find($id = post('id'));
 
-        Cart::add($product->id, $product->title, $qty, $product->price);
+        Cart::add(
+            $product->id,
+            $product->title,
+            post('quantity', 1),
+            $product->price
+        )->associate($product);
 
         return $this->refresh();
     }

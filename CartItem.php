@@ -253,10 +253,14 @@ class CartItem implements Arrayable
             case 'total': return $this->qty * $this->priceTax;
             case 'tax': return $this->price * ($this->taxRate / 100);
             case 'taxTotal': return $this->tax * $this->qty;
-            case 'model': return with(new $this->associatedModel)->find($this->id);
         }
 
         return null;
+    }
+
+    public function model()
+    {
+        return with(new $this->associatedModel)->find($this->id);
     }
 
     /**

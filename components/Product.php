@@ -31,6 +31,10 @@ class Product extends ComponentBase
                 'title' => 'octoshop.core::lang.settings.basket',
                 'description' => 'octoshop.core::lang.settings.basket_description',
             ],
+            'isPrimary' => [
+                'title' => 'Is primary?',
+                'type' => 'checkbox',
+            ],
         ];
     }
 

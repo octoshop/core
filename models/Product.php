@@ -3,9 +3,6 @@
 use Model;
 use Carbon\Carbon;
 
-/**
- * Product Model
- */
 class Product extends Model
 {
     use \Octoshop\Core\Util\UrlMaker;
@@ -144,26 +141,5 @@ class Product extends Model
         return $query->with(['images' => function ($query) {
             $query->orderBy('sort_order', 'asc');
         }]);
-    }
-
-
-    #############################################################
-    # Utility methods                                           #
-    #############################################################
-
-    /**
-     * Set the url attribute for products
-     * @param string                      $pageName
-     * @param \Backend\Classes\Controller $controller
-     * @return string
-     */
-    public function setUrl($pageName, $controller)
-    {
-        $params = [
-            'id' => $this->id,
-            'slug' => $this->slug,
-        ];
-
-        return $this->url = $controller->pageUrl($pageName, $params);
     }
 }
