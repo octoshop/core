@@ -7,6 +7,8 @@ use Octoshop\Core\Models\Product;
 
 class Products extends ComponentBase
 {
+    protected $callbacks = [];
+
     protected $componentProperties = [
         'productPage' => [
             'title' => 'octoshop.core::lang.settings.product_page',
@@ -62,9 +64,18 @@ class Products extends ComponentBase
     {
         $products = new Product;
 
+        foreach ($this->callbacks as $param => $callback) {
+            $products = $callback($products, $this->$param);
+        }
+
         $includeUnavailable = true;
         $filter = 'all'.($includeUnavailable ? 'Enabled' : 'Available').'WithImages';
 
         return $products->$filter();
+    }
+
+    public function registerFilter($filter, $callback)
+    {
+        $this->callbacks[$filter] = $callback;
     }
 }
