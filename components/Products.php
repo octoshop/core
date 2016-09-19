@@ -1,14 +1,11 @@
 <?php namespace Octoshop\Core\Components;
 
-use Event;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Octoshop\Core\Models\Product;
 
 class Products extends ComponentBase
 {
-    protected $callbacks = [];
-
     protected $componentProperties = [
         'productPage' => [
             'title' => 'octoshop.core::lang.settings.product_page',
@@ -18,12 +15,9 @@ class Products extends ComponentBase
         ],
     ];
 
-    public $products;
+    protected $productFilters;
 
-    public function init()
-    {
-        Event::fire('octoshop.core.extendProductsComponent', [$this]);
-    }
+    public $products;
 
     public function componentDetails()
     {
@@ -40,7 +34,9 @@ class Products extends ComponentBase
 
     public function addProperties($properties)
     {
-        return $this->componentProperties = array_replace($this->componentProperties, $properties);
+        $this->componentProperties = array_replace($this->componentProperties, $properties);
+
+        return $this->properties = $this->validateProperties([]);
     }
 
     public function getProductPageOptions()
@@ -64,8 +60,8 @@ class Products extends ComponentBase
     {
         $products = new Product;
 
-        foreach ($this->callbacks as $param => $callback) {
-            $products = $callback($products, $this->$param);
+        foreach ($this->productFilters as $property => $method) {
+            $products = $products->$method($this->property($property));
         }
 
         $includeUnavailable = true;
@@ -74,8 +70,8 @@ class Products extends ComponentBase
         return $products->$filter();
     }
 
-    public function registerFilter($filter, $callback)
+    public function registerFilter($property, $scope)
     {
-        $this->callbacks[$filter] = $callback;
+        $this->productFilters[$property] = $scope;
     }
 }
