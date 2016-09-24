@@ -15,6 +15,8 @@ class Products extends ComponentBase
         ],
     ];
 
+    protected $preparedVars = [];
+
     protected $productFilters;
 
     public $products;
@@ -46,14 +48,30 @@ class Products extends ComponentBase
 
     public function onRun()
     {
-        $this->prepareVars();
+        $this->registerVar('products', function() {
+            return $this->listProducts();
+        });
 
-        $this->products = $this->page['products'] = $this->listProducts();
+        $this->prepareVars();
+    }
+
+    public function registerVar($var, $value)
+    {
+        array_push($this->preparedVars, (object) [
+            'name' => $var,
+            'value' => $value,
+        ]);
     }
 
     public function prepareVars()
     {
-        $this->productPage = $this->page['productPage'] = $this->property('productPage');
+        $this->registerVar('productPage', $this->property('productPage'));
+
+        foreach ($this->preparedVars as $var) {
+            $this->{$var->name} = $this->page[$var->name] = is_callable($var->value)
+                ? call_user_func($var->value)
+                : $var->value;
+        }
     }
 
     public function listProducts()
