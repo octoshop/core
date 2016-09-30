@@ -48,19 +48,7 @@ class Products extends ComponentBase
 
     public function onRun()
     {
-        $this->registerVar('products', function() {
-            return $this->listProducts();
-        });
-
         $this->prepareVars();
-    }
-
-    public function registerVar($var, $value)
-    {
-        array_push($this->preparedVars, (object) [
-            'name' => $var,
-            'value' => $value,
-        ]);
     }
 
     public function prepareVars()
@@ -72,6 +60,15 @@ class Products extends ComponentBase
                 ? call_user_func($var->value)
                 : $var->value;
         }
+        $this->products = $this->page['products'] = $this->listProducts();
+    }
+
+    public function registerVar($var, $value)
+    {
+        array_push($this->preparedVars, (object) [
+            'name' => $var,
+            'value' => $value,
+        ]);
     }
 
     public function listProducts()
