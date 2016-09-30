@@ -91,6 +91,14 @@ class Plugin extends PluginBase
                 'class'       => 'Octoshop\Core\Models\CurrencySettings',
                 'order'       => 160,
             ],
+            'shop' => [
+                'label' => 'Shop Settings',
+                'description' => "Manage various options related to the public-facing side of your shop.",
+                'category' => 'octoshop.core::lang.plugin.name',
+                'icon' => 'icon-sliders',
+                'class' => 'Octoshop\Core\Models\ShopSetting',
+                'order' => 150,
+            ],
         ];
     }
 }
