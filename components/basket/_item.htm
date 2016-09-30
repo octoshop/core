@@ -3,7 +3,7 @@
         <button type="submit" class="btn btn-xs btn-default"
                 data-request="{{ __SELF__ }}::onRemoveProduct"
                 data-request-data="row_id: '{{ item.rowId }}'"
-                data-request-success="$('.ocshop-row-{{ item.rowId }}').remove(); $('.ocshop-total').text(data.total); $('.ocshop-count').text(data.count);">
+                data-request-update="'{{ __SELF__.basketPartial }}' : '{{ __SELF__.basketContainer }}'"
             <span class="glyphicon glyphicon-remove"></span>
         </button>
     </td>

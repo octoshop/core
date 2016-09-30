@@ -7,13 +7,17 @@ use Octoshop\Core\Models\Product as ShopProduct;
 
 class Basket extends ComponentBase
 {
-    public $productPage;
-
     public $basketItems;
 
     public $basketCount;
 
     public $basketTotal;
+
+    public $basketContainer;
+
+    public $basketPartial;
+
+    public $condense;
 
     public function componentDetails()
     {
@@ -26,11 +30,20 @@ class Basket extends ComponentBase
     public function defineProperties()
     {
         return [
-            'productPage' => [
-                'title'       => 'Product Page',
-                'description' => 'Name of the product page for the product titles.',
-                'type'        => 'dropdown',
-                'default'     => 'product',
+            'basketContainer' => [
+                'title'       => 'Basket Container',
+                'description' => 'CSS selector of the basket container element to update.',
+                'default'     => '#basket',
+            ],
+            'basketPartial' => [
+                'title'       => 'Basket Partial',
+                'description' => 'Partial to use when adding products to basket',
+                'default'     => 'basket/default',
+            ],
+            'condense' => [
+                'title' => 'Condensed view',
+                'description' => 'Renders the default table with the table-condensed class.',
+                'type' => 'string',
             ],
         ];
     }
@@ -42,37 +55,15 @@ class Basket extends ComponentBase
 
     public function prepareVars()
     {
-        $this->setPageProp('productPage');
-        $this->setPageProp('basketComponent');
+        $this->setPageProp('condense');
 
         $this->refresh();
-
-        $this->setPageProp('basketComponent');
-    }
-
-    public function onAddProduct()
-    {
-        $product = ShopProduct::find($id = post('id'));
-
-        Cart::add(
-            $product->id,
-            $product->title,
-            post('quantity', 1),
-            $product->price
-        )->associate($product);
-
-        return $this->refresh();
-    }
-
-    public function onRemoveProduct()
-    {
-        Cart::remove(post('row_id'));
-
-        return $this->refresh();
     }
 
     public function refresh()
     {
+        $this->setPageProp('basketContainer');
+        $this->setPageProp('basketPartial');
         $this->setPageProp('basketItems', Cart::content());
         $this->setPageProp('basketCount', $count = Cart::count() ?: 0);
         $this->setPageProp('basketTotal', $total = Cart::total() ?: 0);
@@ -89,6 +80,41 @@ class Basket extends ComponentBase
 
         $this->page[$property] = $value;
         $this->{$property} = $value;
+    }
+
+    public function onAddProduct()
+    {
+        $product = ShopProduct::find($id = post('id'));
+
+        Cart::add(
+            $product->id,
+            $product->title,
+            post('quantity', 1),
+            $product->price
+        )->associate($product);
+
+        return $this->refresh();
+    }
+
+    public function onSetProductQty()
+    {
+        Cart::update(post('row_id'), post('quantity'));
+
+        return $this->refresh();
+    }
+
+    public function onRemoveProduct()
+    {
+        Cart::remove(post('row_id'));
+
+        return $this->refresh();
+    }
+
+    public function onEmptyBasket()
+    {
+        Cart::destroy();
+
+        return $this->refresh();
     }
 
     public function getPagesDropdown()

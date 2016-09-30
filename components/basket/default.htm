@@ -1,4 +1,4 @@
-<table>
+<table class="table{% if __SELF__.condense %} table-condensed{% endif %}">
     <thead>
         <tr>
             <th>&nbsp;</th>
@@ -13,7 +13,7 @@
             {% partial __SELF__~'::_item' item=item %}
         {% endfor %}
         <tr>
-            <td colspan="4">Total:</td>
+            <td colspan="4"><span class="pull-right">Total:</span></td>
             <td><span class="ocshop-total">{{ __SELF__.basketTotal|currency }}</span></td>
         </tr>
     </tbody>
