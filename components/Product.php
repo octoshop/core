@@ -1,6 +1,5 @@
 <?php namespace Octoshop\Core\Components;
 
-use Cms\Classes\ComponentBase;
 use Octoshop\Core\Models\Product as ShopProduct;
 
 class Product extends ComponentBase
@@ -42,13 +41,13 @@ class Product extends ComponentBase
     {
         $this->prepareVars();
 
-        $this->product = $this->page['product'] = $this->loadProduct();
+        $this->setPageProp('product', $this->loadProduct());
     }
 
     public function prepareVars()
     {
-        $this->slug = $this->page['slug'] = $this->property('slug');
-        $this->basket = $this->page['basket'] = $this->property('basket');
+        $this->setPageProp('slug');
+        $this->setPageProp('basket');
     }
 
     public function loadProduct()

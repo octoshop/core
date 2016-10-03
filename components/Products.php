@@ -1,7 +1,6 @@
 <?php namespace Octoshop\Core\Components;
 
 use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
 use Octoshop\Core\Models\Product;
 
 class Products extends ComponentBase
@@ -56,11 +55,12 @@ class Products extends ComponentBase
         $this->registerVar('productPage', $this->property('productPage'));
 
         foreach ($this->preparedVars as $var) {
-            $this->{$var->name} = $this->page[$var->name] = is_callable($var->value)
-                ? call_user_func($var->value)
-                : $var->value;
+            $value = is_callable($var->value) ? call_user_func($var->value) : $var->value;
+
+            $this->setPageProp($var->name, $value);
         }
-        $this->products = $this->page['products'] = $this->listProducts();
+
+        $this->setPageProp('products', $this->listProducts());
     }
 
     public function registerVar($var, $value)

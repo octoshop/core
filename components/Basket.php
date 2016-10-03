@@ -2,7 +2,6 @@
 
 use Cart;
 use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
 use Octoshop\Core\Models\Product as ShopProduct;
 
 class Basket extends ComponentBase
@@ -72,14 +71,6 @@ class Basket extends ComponentBase
             'count' => $count,
             'total' => $total,
         ];
-    }
-
-    protected function setPageProp($property, $value = null)
-    {
-        $value = $value ?: $this->property($property);
-
-        $this->page[$property] = $value;
-        $this->{$property} = $value;
     }
 
     public function onAddProduct()
