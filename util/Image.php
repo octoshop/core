@@ -1,5 +1,6 @@
 <?php namespace Octoshop\Core\Util;
 
+use Octoshop\Core\Models\ShopSetting;
 use System\Models\File;
 
 class Image
@@ -76,11 +77,11 @@ class Image
             $quality = self::IMG_DEFAULT_QUALITY;
         }
 
-        if (!$image) {
+        if (!$image && !($image = ShopSetting::instance()->default_product_image)) {
             $dimensions = $width.'x'.($height ?: $width);
             $format = $extension == 'auto' ? 'png' : $extension;
 
-            return "http://octoshop.co/api/placeholder/{$dimensions}.{$format}";
+            return "https://octoshop.co/api/placeholder/{$dimensions}.{$format}";
         }
 
         return $image->getThumb($width, $height ?: $width, compact('mode', 'extension', 'quality'));

@@ -1,0 +1,8 @@
+tabs:
+    fields:
+        default_product_image:
+            label: Default product image
+            type: fileupload
+            imageWidth: 200
+            imageHeight: 200
+            tab: Products

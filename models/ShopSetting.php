@@ -8,7 +8,11 @@ class ShopSetting extends Model
 
     public $settingsCode = 'octoshop_core';
 
-    public $settingsFields = '';
+    public $settingsFields = 'fields.yaml';
+
+    public $attachOne = [
+        'default_product_image' => ['System\Models\File'],
+    ];
 
     protected $defaults = [];
 
