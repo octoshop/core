@@ -337,66 +337,6 @@ class Cart
     }
 
     /**
-     * Store the current instance of the cart.
-     *
-     * @param mixed $identifier
-     * @return void
-     */
-    public function store($identifier)
-    {
-        $content = $this->getContent();
-
-        if ($this->storedCartWithIdentifierExists($identifier)) {
-            throw new CartAlreadyStoredException("A cart with identifier {$identifier} was already stored.");
-        }
-
-        $this->getConnection()->table($this->getTableName())->insert([
-            'identifier' => $identifier,
-            'instance' => $this->currentInstance(),
-            'content' => serialize($content)
-        ]);
-
-        $this->events->fire('cart.stored');
-    }
-
-    /**
-     * Restore the cart with the given identifier.
-     *
-     * @param mixed $identifier
-     * @return void
-     */
-    public function restore($identifier)
-    {
-        if(!$this->storedCartWithIdentifierExists($identifier)) {
-            return;
-        }
-
-        $stored = $this->getConnection()->table($this->getTableName())
-            ->where('identifier', $identifier)->first();
-
-        $storedContent = unserialize($stored->content);
-
-        $currentInstance = $this->currentInstance();
-
-        $this->instance($stored->instance);
-
-        $content = $this->getContent();
-
-        foreach ($storedContent as $cartItem) {
-            $content->put($cartItem->rowId, $cartItem);
-        }
-
-        $this->events->fire('cart.restored');
-
-        $this->session->put($this->instance, $content);
-
-        $this->instance($currentInstance);
-
-        $this->getConnection()->table($this->getTableName())
-            ->where('identifier', $identifier)->delete();
-    }
-
-    /**
      * Magic method to make accessing the total, tax and subtotal properties possible.
      *
      * @param string $attribute
@@ -463,46 +403,5 @@ class Cart
         }
 
         return is_array(head($item)) || head($item) instanceof Buyable;
-    }
-
-    /**
-     * @param $identifier
-     * @return bool
-     */
-    private function storedCartWithIdentifierExists($identifier)
-    {
-        return $this->getConnection()->table($this->getTableName())->where('identifier', $identifier)->exists();
-    }
-
-    /**
-     * Get the database connection.
-     *
-     * @return \Illuminate\Database\Connection
-     */
-    private function getConnection()
-    {
-        $connectionName = $this->getConnectionName();
-
-        return app(DatabaseManager::class)->connection($connectionName);
-    }
-
-    /**
-     * Get the database table name.
-     *
-     * @return string
-     */
-    private function getTableName()
-    {
-        return 'octoshop_baskets';
-    }
-
-    /**
-     * Get the database connection name.
-     *
-     * @return string
-     */
-    private function getConnectionName()
-    {
-        return config('database.default');
     }
 }
