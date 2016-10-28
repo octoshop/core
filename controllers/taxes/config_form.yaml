@@ -1,0 +1,27 @@
+# Record name
+name: Tax
+
+# Model Form Field configuration
+form: ~/plugins/octoshop/core/models/tax/fields.yaml
+
+# Model Class name
+modelClass: Octoshop\Core\Models\Tax
+
+# Default redirect location
+defaultRedirect: octoshop/core/taxes
+
+# Create page
+create:
+    title: Create Taxes
+    redirect: octoshop/core/taxes/update/:id
+    redirectClose: octoshop/core/taxes
+
+# Update page
+update:
+    title: Edit Taxes
+    redirect: octoshop/core/taxes
+    redirectClose: octoshop/core/taxes
+
+# Preview page
+preview:
+    title: Preview Taxes

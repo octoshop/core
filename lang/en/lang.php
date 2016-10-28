@@ -6,6 +6,10 @@ return [
         'menu_label' => 'Shop',
         'description' => 'A bespoke, modular eCommerce solution fit for any purpose.',
     ],
+    'menu' => [
+        'products' => 'Products',
+        'taxes' => 'Tax tables',
+    ],
     'components' => [
         'product' => 'Product',
         'product_description' => 'Display a single product.',

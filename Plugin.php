@@ -69,11 +69,17 @@ class Plugin extends PluginBase
                 ],
                 'sideMenu' => [
                     'products' => [
-                        'label'       => 'Products',
+                        'label'       => 'octoshop.core::lang.menu.products',
                         'url'         => Backend::url('octoshop/core/products'),
                         'icon'        => 'icon-cubes',
                         'order'       => 200,
                         'permissions' => ['octoshop.core.access_products']
+                    ],
+                    'taxes' => [
+                        'label' => 'octoshop.core::lang.menu.taxes',
+                        'url'   => Backend::url('octoshop/core/taxes'),
+                        'icon'  => 'icon-table',
+                        'order' => 400,
                     ],
                 ],
             ],
