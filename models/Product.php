@@ -51,6 +51,13 @@ class Product extends Model
 
     protected $urlComponentName = 'shopProduct';
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->setUrlPageName('product.htm');
+    }
+
 
     #############################################################
     # Search scopes                                             #

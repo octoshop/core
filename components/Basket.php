@@ -107,9 +107,4 @@ class Basket extends ComponentBase
 
         return $this->refresh();
     }
-
-    public function getPagesDropdown()
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
-    }
 }
