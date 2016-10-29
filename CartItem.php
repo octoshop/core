@@ -91,81 +91,63 @@ class CartItem implements Arrayable
     /**
      * Returns the formatted price without TAX.
      *
-     * @param int    $decimals
-     * @param string $decimalPoint
-     * @param string $thousandSeperator
      * @return string
      */
-    public function price($decimals = 2, $decimalPoint = '.', $thousandSeperator = ',')
+    public function price()
     {
-        return number_format($this->price, $decimals, $decimalPoint, $thousandSeperator);
+        return $this->price;
     }
 
     /**
      * Returns the formatted price with TAX.
      *
-     * @param int    $decimals
-     * @param string $decimalPoint
-     * @param string $thousandSeperator
      * @return string
      */
-    public function priceTax($decimals = 2, $decimalPoint = '.', $thousandSeperator = ',')
+    public function priceTax()
     {
-        return number_format($this->priceTax, $decimals, $decimalPoint, $thousandSeperator);
+        return $this->priceTax;
     }
 
     /**
      * Returns the formatted subtotal.
      * Subtotal is price for whole CartItem without TAX
      *
-     * @param int    $decimals
-     * @param string $decimalPoint
-     * @param string $thousandSeperator
      * @return string
      */
-    public function subtotal($decimals = 2, $decimalPoint = '.', $thousandSeperator = ',')
+    public function subtotal()
     {
-        return number_format($this->subtotal, $decimals, $decimalPoint, $thousandSeperator);
+        return $this->subtotal;
     }
 
     /**
      * Returns the formatted total.
      * Total is price for whole CartItem with TAX
      *
-     * @param int    $decimals
-     * @param string $decimalPoint
-     * @param string $thousandSeperator
      * @return string
      */
-    public function total($decimals = 2, $decimalPoint = '.', $thousandSeperator = ',')
+    public function total()
     {
-        return number_format($this->total, $decimals, $decimalPoint, $thousandSeperator);
+        return $this->total;
     }
 
     /**
      * Returns the formatted tax.
      *
-     * @param int    $decimals
-     * @param string $decimalPoint
-     * @param string $thousandSeperator
      * @return string
      */
-    public function tax($decimals = 2, $decimalPoint = '.', $thousandSeperator = ',')
+    public function tax()
     {
-        return number_format($this->tax, $decimals, $decimalPoint, $thousandSeperator);
+        return $this->tax;
     }
 
     /**
      * Returns the formatted tax.
      *
-     * @param int    $decimals
-     * @param string $decimalPoint
-     * @param string $thousandSeperator
      * @return string
      */
-    public function taxTotal($decimals = 2, $decimalPoint = '.', $thousandSeperator = ',')
+    public function taxTotal()
     {
-        return number_format($this->taxTotal, $decimals, $decimalPoint, $thousandSeperator);
+        return $this->taxTotal;
     }
 
     /**
