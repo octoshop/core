@@ -240,7 +240,7 @@ class CartItem implements Arrayable
         return null;
     }
 
-    public function model()
+    public function product()
     {
         return with(new $this->associatedModel)->find($this->id);
     }

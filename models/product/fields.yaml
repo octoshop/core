@@ -27,11 +27,10 @@ secondaryTabs:
             type: richeditor
             stretch: true
 
-        intro:
-            label: Introductory Text
-            type: richeditor
+        model:
+            label: Model
+            type: text
             span: left
-            placeholder: Enter a short description to introduce people to your product
 
         is_enabled:
             label: Product Visibility
@@ -44,6 +43,12 @@ secondaryTabs:
             span: right
             cssClass: checkbox-align
 
+        intro:
+            label: Introductory Text
+            type: richeditor
+            span: left
+            placeholder: Enter a short description to introduce people to your product
+
         price:
             label: Price
             type: number
@@ -51,8 +56,7 @@ secondaryTabs:
             cssClass: checkbox-align
 
         images:
-            span: right
-            label: Images
+            tab: Images
             type: Backend\FormWidgets\FileUpload
             mode: image
             imageHeight: 120

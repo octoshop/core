@@ -9,6 +9,9 @@
 {{ product.description|raw }}
 
 <p>
+    {% if product.model %}
+    <strong>Model:</strong> {{ product.model }}<br>
+    {% endif %}
     <strong>Price:</strong> {{ product.price|currency }}
 </p>
 
