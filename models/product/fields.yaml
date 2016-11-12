@@ -20,40 +20,69 @@ fields:
 
 secondaryTabs:
     defaultTab: Manage
-    stretch: true
     fields:
-        description:
+        tagline:
+            label: Tagline
             tab: Edit
-            type: richeditor
-            stretch: true
+            span: left
+            placeholder: Enter a short description to introduce people to your product
 
         model:
             label: Model
+            tab: Edit
             type: text
-            span: left
+            span: right
+
+        description:
+            label: Description
+            tab: Edit
+            type: richeditor
+            size: giant
 
         is_enabled:
-            label: Product Visibility
+            label: Enable this product
+            comment: Switch this off to completely disable the product.
             type: switch
+            span: left
+
+        is_available:
+            label: Availability
             span: right
+            type: dropdown
+            default: 1
+            options:
+                0: Unavailable
+                1: Available now
+                2: Available from set date
+
+        is_visible:
+            label: Show in listings
+            comment: Disable this option to prevent the product showing on category pages.
+            type: switch
+            default: true
+            span: left
 
         available_at:
             label: Available from
             type: datepicker
             span: right
             cssClass: checkbox-align
-
-        intro:
-            label: Introductory Text
-            type: richeditor
-            span: left
-            placeholder: Enter a short description to introduce people to your product
+            trigger:
+                action: show
+                field: is_available
+                condition: value[2]
 
         price:
-            label: Price
+            label: Base Price
+            comment: Enter the price before tax, shipping and discounts are applied.
             type: number
             span: right
-            cssClass: checkbox-align
+
+        minimum_qty:
+            label: Minimum Order Quantity
+            type: number
+            span: right
+            default: 1
 
         images:
             tab: Images

@@ -11,11 +11,15 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('title')->index();
             $table->string('slug')->index()->unique();
+            $table->string('tagline')->nullable();
+            $table->string('model')->nullable();
             $table->longText('description');
-            $table->string('intro')->nullable();
-            $table->decimal('price', 20, 5)->default(0)->nullable();
             $table->boolean('is_enabled')->default(false);
+            $table->integer('is_available', 1)->default(1);
+            $table->boolean('is_visible')->default(true);
             $table->dateTime('available_at')->nullable();
+            $table->decimal('price', 20, 5)->default(0)->nullable();
+            $table->integer('minimum_qty')->default(1);
             $table->timestamps();
         });
     }

@@ -26,6 +26,6 @@ class Products extends Controller
 
         BackendMenu::setContext('Octoshop.Core', 'octoshop', 'products');
 
-        $this->addJs($this->assetsPath.'/js/product-form.js');
+        $this->addCss($this->assetsPath.'/css/product-form.css');
     }
 }
