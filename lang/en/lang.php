@@ -8,7 +8,6 @@ return [
     ],
     'menu' => [
         'products' => 'Products',
-        'taxes' => 'Tax tables',
     ],
     'components' => [
         'product' => 'Product',

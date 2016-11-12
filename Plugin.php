@@ -75,12 +75,6 @@ class Plugin extends PluginBase
                         'order'       => 200,
                         'permissions' => ['octoshop.core.access_products']
                     ],
-                    'taxes' => [
-                        'label' => 'octoshop.core::lang.menu.taxes',
-                        'url'   => Backend::url('octoshop/core/taxes'),
-                        'icon'  => 'icon-table',
-                        'order' => 400,
-                    ],
                 ],
             ],
         ];
