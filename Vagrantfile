@@ -39,6 +39,9 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder "../shipping", "/var/www/octoshop.dev/plugins/octoshop/shipping",
         create: true, group: "www-data", owner: "www-data"
         #disabled: true
+    config.vm.synced_folder "../stock", "/var/www/octoshop.dev/plugins/octoshop/stock",
+        create: true, group: "www-data", owner: "www-data"
+        #disabled: true
     config.vm.synced_folder "../treecat", "/var/www/octoshop.dev/plugins/octoshop/treecat",
         create: true, group: "www-data", owner: "www-data"
         #disabled: true
