@@ -1,4 +1,9 @@
 <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+
+{% if product.tagline %}
+<p class="lead">{{ product.tagline }}</p>
+{% endif %}
+
 <img alt="{{ product.title }}" src="{{ product.images.first|thumbnail(179) }}" />
 <p>
     {{ product.price|currency }}

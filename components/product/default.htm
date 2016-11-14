@@ -1,5 +1,9 @@
 <h2>{{ product.title }}</h2>
 
+{% if product.tagline %}
+<p class="lead">{{ product.tagline }}</p>
+{% endif %}
+
 {% for image in product.images %}
     <a href="{{ image.getPath() }}">
         <img alt="{{ product.title }}" src="{{ image|thumbnail(150) }}">
