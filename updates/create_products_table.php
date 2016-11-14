@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
             $table->string('model')->nullable();
             $table->longText('description');
             $table->boolean('is_enabled')->default(false);
-            $table->integer('is_available', 1)->default(1);
+            $table->tinyInteger('is_available')->default(1);
             $table->boolean('is_visible')->default(true);
             $table->dateTime('available_at')->nullable();
             $table->decimal('price', 20, 5)->default(0)->nullable();

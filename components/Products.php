@@ -79,10 +79,11 @@ class Products extends ComponentBase
             $products = $products->$method($this->property($property));
         }
 
-        $includeUnavailable = true;
-        $filter = 'all'.($includeUnavailable ? 'Enabled' : 'Available').'WithImages';
-
-        return $products->$filter();
+        /**
+         * @todo: Change is_visible to a dropdown similar to is_available
+         *          In other words, 0 => Hidden, 1 => Visible, 2 => Visible once available
+         */
+        return $products->allVisibleWithImages();
     }
 
     public function registerFilter($property, $scope)

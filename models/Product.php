@@ -58,6 +58,38 @@ class Product extends Model
         $this->setUrlPageName('product.htm');
     }
 
+    public function canBePurchased()
+    {
+        switch ((int) $this->attributes['is_available']) {
+            case 2:
+                $date = $this->attributes['available_at'];
+
+                return Carbon::now()->gt(new Carbon($date));
+            case 1:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public function cannotBePurchased()
+    {
+        return !$this->canBePurchased();
+    }
+
+    public function isComingSoon()
+    {
+        $available = (int) $this->attributes['is_available'];
+
+        if ($available !== 2 || !isset($this->attributes['available_at'])) {
+            return false;
+        }
+
+        $date = $this->attributes['available_at'];
+
+        return Carbon::now()->lt(new Carbon($date));
+    }
+
 
     #############################################################
     # Search scopes                                             #
@@ -73,9 +105,16 @@ class Product extends Model
         return $query->whereIsEnabled(true);
     }
 
+    public function scopeVisible($query)
+    {
+        return $query->enabled()->whereIsVisible(true);
+    }
+
     public function scopeAvailable($query)
     {
-        return $query->enabled()->where('available_at', '<=', Carbon::now());
+        return $query->enabled()
+                     ->where('is_available', '>', '0')
+                     ->orWhere('available_at', '<=', Carbon::now());
     }
 
 
@@ -131,6 +170,11 @@ class Product extends Model
     public function scopeAllEnabledWithImages($query)
     {
         return $query->enabled()->allWithImages();
+    }
+
+    public function scopeAllVisibleWithImages($query)
+    {
+        return $query->visible()->allWithImages();
     }
 
     public function scopeAllAvailableWithImages($query)

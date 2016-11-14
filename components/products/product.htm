@@ -5,15 +5,21 @@
 {% endif %}
 
 <img alt="{{ product.title }}" src="{{ product.images.first|thumbnail(179) }}" />
-<p>
-    {{ product.price|currency }}
-    <button type="submit"
+
+<h5>{{ product.price|currency }}</h5>
+
+{% if product.canBePurchased %}
+    <form
         data-request="{{ basketComponent }}::onAddProduct"
         data-request-data="id: {{ product.id }}, quantity: 1"
         {% if basketContainer %}
             data-request-update="'{{ basketPartial }}' : '{{ basketContainer }}'"
         {% endif %}
     >
-        Add to Basket
-    </button>
-</p>
+        <button type="submit">Add to Basket</button>
+    </form>
+{% elseif product.isComingSoon %}
+    <p>Coming soon! Please check back later.</p>
+{% else %}
+    <p>This product is currently unavailable.</p>
+{% endif %}

@@ -4,6 +4,10 @@
 <p class="lead">{{ product.tagline }}</p>
 {% endif %}
 
+{% if product.model %}
+<p><strong>Model:</strong> {{ product.model }}<br></p>
+{% endif %}
+
 {% for image in product.images %}
     <a href="{{ image.getPath() }}">
         <img alt="{{ product.title }}" src="{{ image|thumbnail(150) }}">
@@ -12,23 +16,23 @@
 
 {{ product.description|raw }}
 
-<p>
-    {% if product.model %}
-    <strong>Model:</strong> {{ product.model }}<br>
-    {% endif %}
-    <strong>Price:</strong> {{ product.price|currency }}
-</p>
+<h5>{{ product.price|currency }}</h5>
 
-<form
-    data-request="{{ basketComponent }}::onAddProduct"
-    data-request-data="id: {{ product.id }}"
-    {% if basket %}
-        data-request-update="'{{ basketPartial }}' : '{{ basket }}'"
-    {% endif %}
->
-    <input type="number" name="quantity" placeholder="Qty"
-        min="1" max="9999" value="1"
-        {% if product.outOfStock() %}disabled{% endif %}
+{% if product.canBePurchased %}
+    <form
+        data-request="{{ basketComponent }}::onAddProduct"
+        data-request-data="id: {{ product.id }}"
+        {% if basket %}
+            data-request-update="'{{ basketPartial }}' : '{{ basket }}'"
+        {% endif %}
     >
-    <button type="submit">Add to Basket</button>
-</form>
+        <input type="number" name="quantity" placeholder="Qty"
+            min="1" max="9999" value="1"
+        >
+        <button type="submit">Add to Basket</button>
+    </form>
+{% elseif product.isComingSoon %}
+    <p>Coming soon! Please check back later.</p>
+{% else %}
+    <p>Sorry, this product is currently unavailable for purchase.</p>
+{% endif %}
