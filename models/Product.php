@@ -124,17 +124,17 @@ class Product extends Model
 
     public function scopeFirstEnabled($query)
     {
-        return $query->enabled()->first();
+        return $query->enabled()->firstOrFail();
     }
 
     public function scopeFirstAvailable($query)
     {
-        return $query->available()->first();
+        return $query->available()->firstOrFail();
     }
 
     public function scopeFirstWithImages($query)
     {
-        return $query->withImages()->first();
+        return $query->withImages()->firstOrFail();
     }
 
     public function scopeFirstEnabledWithImages($query)

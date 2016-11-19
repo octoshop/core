@@ -1,5 +1,7 @@
 <?php namespace Octoshop\Core\Components;
 
+use Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Octoshop\Core\Models\Product as ShopProduct;
 
 class Product extends ComponentBase
@@ -41,7 +43,13 @@ class Product extends ComponentBase
     {
         $this->prepareVars();
 
-        $this->setPageProp('product', $this->loadProduct());
+        try {
+            $product = $this->loadProduct();
+
+            $this->setPageProp('product', $product);
+        } catch (ModelNotFoundException $e) {
+            return Response::make($this->controller->run('404'), 404);
+        }
     }
 
     public function prepareVars()
