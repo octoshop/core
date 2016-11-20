@@ -48,7 +48,9 @@ class Product extends ComponentBase
 
             $this->setPageProp('product', $product);
         } catch (ModelNotFoundException $e) {
-            return Response::make($this->controller->run('404'), 404);
+            $this->setStatusCode(404);
+
+            return $this->controller->run(404);
         }
     }
 
