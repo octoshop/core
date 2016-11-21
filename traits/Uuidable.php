@@ -44,6 +44,6 @@ trait Uuidable
     {
         $uuid = Uuid::import($uuid);
 
-        return $query->whereUuid($uuid->binary)->first();
+        return $query->whereUuid($uuid->binary)->firstOrFail();
     }
 }
