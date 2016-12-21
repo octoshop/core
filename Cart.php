@@ -1,16 +1,19 @@
 <?php namespace Octoshop\Core;
 
 use Closure;
+use Event;
 use Illuminate\Support\Collection;
 use Illuminate\Session\SessionManager;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Contracts\Events\Dispatcher;
+use October\Rain\Extension\Extendable;
+use October\Rain\Exception\ValidationException;
 use Octoshop\Core\Contracts\Buyable;
 use Octoshop\Core\Exceptions\UnknownModelException;
 use Octoshop\Core\Exceptions\InvalidRowIDException;
 use Octoshop\Core\Exceptions\CartAlreadyStoredException;
 
-class Cart
+class Cart extends Extendable
 {
     const DEFAULT_INSTANCE = 'default';
 
@@ -34,6 +37,13 @@ class Cart
      * @var string
      */
     private $instance;
+
+    /**
+     * Callback functions for cart item validation
+     *
+     * @var array
+     */
+    private $callbacks;
 
     /**
      * Cart constructor.
@@ -305,6 +315,63 @@ class Cart
         $content->put($cartItem->rowId, $cartItem);
 
         $this->session->put($this->instance, $content);
+    }
+
+    /**
+     * Check the cart to ensure its items are able to be purchased.
+     *
+     * @return array
+     */
+    public function validate()
+    {
+        // Ensure a clean slate
+        $this->callbacks = [];
+        $errors = [];
+
+        // Register availability check internally
+        // to make sure that it runs before others.
+        $this->registerItemValidator(function(CartItem $item) {
+            $error = null;
+            $product = $item->product();
+
+            if (!$product->is_enabled) {
+                $error = '"%s" could not be found.';
+            } elseif ($product->cannotBePurchased()) {
+                $error = '"%s" is currently unavailable.';
+            } elseif ($product->minimum_qty > $item->qty) {
+                $error = '"%s" requires a minimum of '.$product->minimum_qty.' to order.';
+            }
+
+            return $error ? sprintf($error, $item->name) : true;
+        });
+
+        Event::fire('cart.validate_items', [$this]);
+
+        foreach ($this->getContent() as $item) {
+            $errors = $this->validateItem($item, $errors);
+        }
+
+        return $errors;
+    }
+
+    protected function validateItem($item, $errors)
+    {
+        foreach ($this->callbacks as $callback) {
+            $result = call_user_func_array($callback, [$item]);
+
+            if ($result === true) {
+                continue;
+            }
+
+            $errors[] = $result;
+
+            return $errors;
+        }
+    }
+
+    public function registerItemValidator($callback)
+    {
+        $this->callbacks[] = $callback;
     }
 
     /**

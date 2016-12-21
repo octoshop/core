@@ -60,6 +60,10 @@ class Product extends Model
 
     public function canBePurchased()
     {
+        if ((bool) $this->attributes['is_enabled'] === false) {
+            return false;
+        }
+
         switch ((int) $this->attributes['is_available']) {
             case 2:
                 $date = $this->attributes['available_at'];
