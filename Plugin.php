@@ -12,7 +12,7 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        App::register('\Octoshop\Core\BasketServiceProvider');
+        App::register('\Octoshop\Core\CartServiceProvider');
         AliasLoader::getInstance()->alias('Cart', '\Octoshop\Core\Facades\Cart');
     }
 
