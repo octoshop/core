@@ -2,6 +2,7 @@
 
 use Cart;
 use Cms\Classes\Page;
+use October\Rain\Exception\ValidationException;
 use Octoshop\Core\Models\Product as ShopProduct;
 
 class Basket extends ComponentBase
@@ -106,5 +107,16 @@ class Basket extends ComponentBase
         Cart::destroy();
 
         return $this->refresh();
+    }
+
+    public function onGoToCheckout()
+    {
+        $this->prepareVars();
+
+        $basketErrors = Cart::validate();
+
+        if (count($basketErrors) > 0) {
+            throw new ValidationException($basketErrors);
+        }
     }
 }
