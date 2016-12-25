@@ -348,14 +348,16 @@ class Cart extends Extendable
         Event::fire('cart.validate_items', [$this]);
 
         foreach ($this->getContent() as $item) {
-            $errors = $this->validateItem($item, $errors);
+            $errors = array_merge($errors, $this->validateItem($item));
         }
 
         return $errors;
     }
 
-    protected function validateItem($item, $errors)
+    protected function validateItem($item)
     {
+        $errors = [];
+
         foreach ($this->callbacks as $callback) {
             $result = call_user_func_array($callback, [$item]);
 
@@ -364,9 +366,9 @@ class Cart extends Extendable
             }
 
             $errors[] = $result;
-
-            return $errors;
         }
+
+        return $errors;
     }
 
     public function registerItemValidator($callback)
