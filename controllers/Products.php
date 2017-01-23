@@ -16,6 +16,8 @@ class Products extends Controller
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
 
+    public $requiredPermissions = ['octoshop.core.access_products'];
+
     public $bodyClass = 'compact-container';
 
     protected $assetsPath = '/plugins/octoshop/core/assets';

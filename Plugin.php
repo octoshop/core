@@ -65,7 +65,6 @@ class Plugin extends PluginBase
                 'order' => 300,
                 'permissions' => [
                     'octoshop.core.*',
-                    'feegleweb.octoshop.*',
                 ],
                 'sideMenu' => [
                     'products' => [
@@ -76,6 +75,16 @@ class Plugin extends PluginBase
                         'permissions' => ['octoshop.core.access_products']
                     ],
                 ],
+            ],
+        ];
+    }
+
+    public function registerPermissions()
+    {
+        return [
+            'octoshop.core.access_products' => [
+                'tab' => 'octoshop.core::lang.plugin.name',
+                'label' => 'octoshop.core::lang.permissions.products'
             ],
         ];
     }

@@ -9,6 +9,9 @@ return [
     'menu' => [
         'products' => 'Products',
     ],
+    'permissions' => [
+        'products' => 'Manage shop products',
+    ],
     'components' => [
         'product' => 'Product',
         'product_description' => 'Display a single product.',
