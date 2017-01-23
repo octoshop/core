@@ -11,6 +11,7 @@ return [
     ],
     'permissions' => [
         'products' => 'Manage shop products',
+        'settings' => 'Manage shop settings',
     ],
     'components' => [
         'product' => 'Product',

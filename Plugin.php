@@ -84,7 +84,11 @@ class Plugin extends PluginBase
         return [
             'octoshop.core.access_products' => [
                 'tab' => 'octoshop.core::lang.plugin.name',
-                'label' => 'octoshop.core::lang.permissions.products'
+                'label' => 'octoshop.core::lang.permissions.products',
+            ],
+            'octoshop.core.access_settings' => [
+                'tab' => 'octoshop.core::lang.plugin.name',
+                'label' => 'octoshop.core::lang.permissions.settings',
             ],
         ];
     }
@@ -99,6 +103,7 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-gbp',
                 'class'       => 'Octoshop\Core\Models\CurrencySettings',
                 'order'       => 160,
+                'permissions' => ['octoshop.core.access_settings'],
             ],
             'shop' => [
                 'label' => 'Shop Settings',
@@ -107,6 +112,7 @@ class Plugin extends PluginBase
                 'icon' => 'icon-sliders',
                 'class' => 'Octoshop\Core\Models\ShopSetting',
                 'order' => 150,
+                'permissions' => ['octoshop.core.access_settings'],
             ],
         ];
     }
