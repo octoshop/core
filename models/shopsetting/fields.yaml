@@ -1,8 +1,8 @@
 tabs:
     fields:
         default_product_image:
-            label: Default product image
+            label: octoshop.core::lang.settings.shop.defaultProductImage
             type: fileupload
             imageWidth: 200
             imageHeight: 200
-            tab: Products
+            tab: octoshop.core::lang.settings.shop.tab

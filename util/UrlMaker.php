@@ -3,6 +3,7 @@
 use File;
 use Cache;
 use Config;
+use Lang;
 use Cms\Classes\Page;
 use Cms\Classes\Controller;
 use ApplicationException;
@@ -60,7 +61,7 @@ trait UrlMaker
 
         if (!$page) {
             throw new ApplicationException(sprintf(
-                'Unable to a find a primary component "%s" for generating a URL in %s.',
+                Lang::get('octoshop.core::lang.urlmaker.no_primary_component'),
                 $this->urlComponentName,
                 get_class($this)
             ));

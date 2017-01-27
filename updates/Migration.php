@@ -1,6 +1,7 @@
 <?php namespace Octoshop\Core\Updates;
 
 use File;
+use Lang;
 use System\Classes\PluginManager;
 use System\Classes\VersionManager;
 use October\Rain\Database\Updates\Migration as BaseMigration;
@@ -58,7 +59,7 @@ class Migration extends BaseMigration
         $code = in_array($version, $this->versionMap) ? $this->versionMap[$version]['code'] : null;
 
         if (!$code) {
-            throw new ApplicationException("Invalid version");
+            throw new ApplicationException(Lang::get('octoshop.core::lang.migration.invalid_version'));
         }
 
         return $code;
@@ -69,7 +70,7 @@ class Migration extends BaseMigration
         $namespace = in_array($version, $this->versionMap) ? $this->versionMap[$version]['namespace'] : null;
 
         if (!$namespace) {
-            throw new ApplicationException("Invalid version");
+            throw new ApplicationException(Lang::get('octoshop.core::lang.migration.invalid_version'));
         }
 
         return $namespace;

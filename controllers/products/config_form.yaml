@@ -1,5 +1,5 @@
 # Record name
-name: Product
+name: octoshop.core::lang.product.label
 
 # Model Form Field configuration
 form: $/octoshop/core/models/product/fields.yaml
@@ -12,16 +12,16 @@ defaultRedirect: octoshop/core/products
 
 # Create page
 create:
-    title: Create Product
+    title: backend::lang.form.create_title
     redirect: octoshop/core/products/update/:id
     redirectClose: octoshop/core/products
 
 # Update page
 update:
-    title: Edit Product
+    title: backend::lang.form.update_title
     redirect: octoshop/core/products
     redirectClose: octoshop/core/products
 
 # Preview page
 preview:
-    title: Preview Product
+    title: backend::lang.form.preview_title

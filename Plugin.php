@@ -97,8 +97,8 @@ class Plugin extends PluginBase
     {
         return [
             'currency' => [
-                'label'       => 'Currency',
-                'description' => 'Set the currency code and symbol used on your shop.',
+                'label'       => 'octoshop.core::lang.settings.currency.label',
+                'description' => 'octoshop.core::lang.settings.currency.description',
                 'category'    => 'octoshop.core::lang.plugin.name',
                 'icon'        => 'icon-gbp',
                 'class'       => 'Octoshop\Core\Models\CurrencySettings',
@@ -106,8 +106,8 @@ class Plugin extends PluginBase
                 'permissions' => ['octoshop.core.access_settings'],
             ],
             'shop' => [
-                'label' => 'Shop Settings',
-                'description' => "Manage various options related to the public-facing side of your shop.",
+                'label' => 'octoshop.core::lang.settings.shop.label',
+                'description' => 'octoshop.core::lang.settings.shop.description',
                 'category' => 'octoshop.core::lang.plugin.name',
                 'icon' => 'icon-sliders',
                 'class' => 'Octoshop\Core\Models\ShopSetting',

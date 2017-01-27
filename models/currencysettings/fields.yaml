@@ -1,34 +1,34 @@
 fields:
     name:
-        label: Currency name
+        label: octoshop.core::settings.currency.name
         default: Pound sterling
     code:
-        label: ISO Code
+        label: octoshop.core::settings.currency.code
         span: left
         default: GBP
     decimals:
-        label: Decimal places
+        label: octoshop.core::settings.currency.decimals
         span: right
         default: 2
     prefix:
-        label: Left symbol
+        label: octoshop.core::settings.currency.prefix
         default: £
         span: left
         containerAttributes:
             style: width:24%;
     suffix:
-        label: Right symbol
+        label: octoshop.core::settings.currency.suffix
         span: left
         containerAttributes:
             style: width:24%;clear:none;margin-left:0.5%;
     thousand_separator:
-        label: Thousands separator
+        label: octoshop.core::settings.currency.thousand_separator
         span: right
         default: ,
         containerAttributes:
             style: width:24%;
     decimal_separator:
-        label: Decimal point
+        label: octoshop.core::settings.currency.decimal_separator
         span: right
         default: .
         containerAttributes:

@@ -1,28 +1,28 @@
 columns:
     id:
-        label: ID
+        label: octoshop.core::lang.product.id
         searchable: true
     title:
-        label: Title
+        label: octoshop.core::lang.product.title
         searchable: true
     model:
-        label: Model
+        label: octoshop.core::lang.product.model
         searchable: true
         invisible: true
     slug:
-        label: Slug
+        label: octoshop.core::lang.product.slug
         searchable: false
     available_at:
-        label: Available From
+        label: octoshop.core::lang.product.availableAt
         searchable: true
         type: date
     created_at:
-        label: Date Created
+        label: octoshop.core::lang.product.createdAt
         searchable: true
         type: date
         invisible: true
     updated_at:
-        label: Last Update
+        label: octoshop.core::lang.product.updatedAt
         searchable: true
         type: date
         invisible: true

@@ -11,6 +11,10 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('octoshop/core/products') ?>" class="btn btn-default">Return to product list</a></p>
+    <p>
+        <a href="<?= Backend::url('octoshop/core/products') ?>" class="btn btn-default">
+            <?= e(trans('octoshop.core::lang.product.return_to_products')) ?>
+        </a>
+    </p>
 
 <?php endif ?>

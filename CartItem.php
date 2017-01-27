@@ -1,5 +1,6 @@
 <?php namespace Octoshop\Core;
 
+use Lang;
 use Illuminate\Contracts\Support\Arrayable;
 use Octoshop\Core\Contracts\Buyable;
 
@@ -72,13 +73,13 @@ class CartItem implements Arrayable
     public function __construct($id, $name, $price, array $options = [])
     {
         if (empty($id)) {
-            throw new \InvalidArgumentException('Please supply a valid identifier.');
+            throw new \InvalidArgumentException(Lang::get('octoshop.core::lang.cart.invalid_id'));
         }
         if (empty($name)) {
-            throw new \InvalidArgumentException('Please supply a valid name.');
+            throw new \InvalidArgumentException(Lang::get('octoshop.core::lang.cart.invalid_name'));
         }
         if (strlen($price) < 0 || !is_numeric($price)) {
-            throw new \InvalidArgumentException('Please supply a valid price.');
+            throw new \InvalidArgumentException(Lang::get('octoshop.core::lang.cart.invalid_price'));
         }
 
         $this->id = $id;
@@ -158,7 +159,7 @@ class CartItem implements Arrayable
     public function setQuantity($qty)
     {
         if(empty($qty) || ! is_numeric($qty))
-            throw new \InvalidArgumentException('Please supply a valid quantity.');
+            throw new \InvalidArgumentException(Lang::get('octoshop.core::lang.cart.invalid_quantity'));
 
         $this->qty = $qty;
     }

@@ -10,7 +10,7 @@
             data-request="onSave"
             data-request-data="redirect:<?= (int) $isCreate ?>"
             data-hotkey="ctrl+s, cmd+s"
-            data-load-indicator="Saving Product..."
+            data-load-indicator="<?= e(trans('octoshop.core::lang.product.saving')) ?>"
             class="btn btn-primary oc-icon-check save">
             <?= e(trans('backend::lang.form.save')) ?>
         </button>
@@ -20,7 +20,7 @@
             data-request="onSave"
             data-request-data="close:1"
             data-hotkey="ctrl+enter, cmd+enter"
-            data-load-indicator="Saving Product..."
+            data-load-indicator="<?= e(trans('octoshop.core::lang.product.saving')) ?>"
             class="btn btn-default oc-icon-check save">
             <?= e(trans('backend::lang.form.save_and_close'))?>
         </button>
@@ -30,8 +30,8 @@
             type="button"
             class="btn btn-default empty oc-icon-trash-o"
             data-request="onDelete"
-            data-load-indicator="Deleting Product..."
-            data-request-confirm="Do you really want to delete this product?">
+            data-load-indicator="<?= e(trans('octoshop.core::lang.product.deleting')) ?>"
+            data-request-confirm="<?= e(trans('octoshop.core::lang.product.delete_confirm')) ?>">
         </button>
         <?php endif ?>
     </div>

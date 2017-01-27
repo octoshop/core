@@ -8,7 +8,7 @@ filter: config_filter.yaml
 modelClass: Octoshop\Core\Models\Product
 
 # List Title
-title: Manage Products
+title: octoshop.core::lang.products.manage
 
 # Link URL for each record
 recordUrl: octoshop/core/products/update/:id

@@ -15,8 +15,8 @@ class Product extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'octoshop.core::lang.components.product',
-            'description' => 'octoshop.core::lang.components.product_description',
+            'name' => 'octoshop.core::lang.components.product.name',
+            'description' => 'octoshop.core::lang.components.product.description',
         ];
     }
 
@@ -24,16 +24,16 @@ class Product extends ComponentBase
     {
         return [
             'slug' => [
-                'title' => 'octoshop.core::lang.settings.slug',
+                'title' => 'octoshop.core::lang.components.product.slug',
                 'default' => '{{ :slug }}',
                 'type' => 'string',
             ],
             'basket' => [
-                'title' => 'octoshop.core::lang.settings.basket',
-                'description' => 'octoshop.core::lang.settings.basket_description',
+                'title' => 'octoshop.core::lang.components.product.basket',
+                'description' => 'octoshop.core::lang.components.product.basket_description',
             ],
             'isPrimary' => [
-                'title' => 'Is primary?',
+                'title' => 'octoshop.core::lang.components.product.isPrimary',
                 'type' => 'checkbox',
             ],
         ];

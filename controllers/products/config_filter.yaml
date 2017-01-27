@@ -1,21 +1,21 @@
 scopes:
 
     enabled:
-        label: Enabled
+        label: octoshop.core::lang.products.enabled
         type: switch
         conditions:
             - is_enabled <> true
             - is_enabled = true
 
     visible:
-        label: Visible
+        label: octoshop.core::lang.products.visible
         type: switch
         conditions:
             - is_visible <> true
             - is_visible = true
 
     available:
-        label: Available
+        label: octoshop.core::lang.products.available
         type: switch
         conditions:
             - is_available = 0 || (is_available = 2 && available_at > NOW())

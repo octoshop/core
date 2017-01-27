@@ -1,12 +1,12 @@
 fields:
     title:
-        label: Title
+        label: octoshop.core::lang.product.title
         span: left
-        placeholder: New product name
+        placeholder: octoshop.core::lang.product.title_placeholder
         required: true
 
     slug:
-        label: Slug
+        label: octoshop.core::lang.product.slug
         span: right
         required: true
         preset:
@@ -19,51 +19,51 @@ fields:
         cssClass: collapse-visible
 
 secondaryTabs:
-    defaultTab: Manage
+    defaultTab: octoshop.core::lang.product.tabs.manage
     fields:
         tagline:
-            label: Tagline
-            tab: Edit
+            label: octoshop.core::lang.product.tagline
+            tab: octoshop.core::lang.product.tabs.edit
             span: left
-            placeholder: Enter a short description to introduce people to your product
+            placeholder: octoshop.core::lang.product.tagline_placeholder
 
         model:
-            label: Model
-            tab: Edit
+            label: octoshop.core::lang.product.model
+            tab: octoshop.core::lang.product.tabs.edit
             type: text
             span: right
 
         description:
-            label: Description
-            tab: Edit
+            label: octoshop.core::lang.product.description
+            tab: octoshop.core::lang.product.tabs.edit
             type: richeditor
             size: giant
 
         is_enabled:
-            label: Enable this product
-            comment: Switch this off to completely disable the product.
+            label: octoshop.core::lang.product.isEnabled
+            comment: octoshop.core::lang.product.isEnabled_comment
             type: switch
             span: left
 
         is_available:
-            label: Availability
+            label: octoshop.core::lang.product.isAvailable
             span: right
             type: dropdown
             default: 1
             options:
-                0: Unavailable
-                1: Available now
-                2: Available from set date
+                0: octoshop.core::lang.product.available
+                1: octoshop.core::lang.product.unavailable
+                2: octoshop.core::lang.product.coming_soon
 
         is_visible:
-            label: Show in listings
-            comment: Disable this option to prevent the product showing on category pages.
+            label: octoshop.core::lang.product.isVisible
+            comment: octoshop.core::lang.product.isVisible_comment
             type: switch
             default: true
             span: left
 
         available_at:
-            label: Available from
+            label: octoshop.core::lang.product.availableAt
             type: datepicker
             span: right
             cssClass: checkbox-align
@@ -73,19 +73,19 @@ secondaryTabs:
                 condition: value[2]
 
         price:
-            label: Base Price
-            comment: Enter the price before tax, shipping and discounts are applied.
+            label: octoshop.core::lang.product.price
+            comment: octoshop.core::lang.product.price_comment
             type: number
             span: right
 
         minimum_qty:
-            label: Minimum Order Quantity
+            label: octoshop.core::lang.product.minimumQty
             type: number
             span: right
             default: 1
 
         images:
-            tab: Images
+            tab: octoshop.core::lang.product.tabs.images
             type: Backend\FormWidgets\FileUpload
             mode: image
             imageHeight: 120

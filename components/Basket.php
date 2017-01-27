@@ -22,8 +22,8 @@ class Basket extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => "Basket",
-            'description' => "Show the contents of and process the user's basket.",
+            'name'        => 'octoshop.core::lang.components.basket.name',
+            'description' => 'octoshop.core::lang.components.basket.description'
         ];
     }
 
@@ -31,18 +31,18 @@ class Basket extends ComponentBase
     {
         return [
             'basketContainer' => [
-                'title'       => 'Basket Container',
-                'description' => 'CSS selector of the basket container element to update.',
+                'title'       => 'octoshop.core::lang.components.basket.basketContainer',
+                'description' => 'octoshop.core::lang.components.basket.basketContainer_description',
                 'default'     => '#basket',
             ],
             'basketPartial' => [
-                'title'       => 'Basket Partial',
-                'description' => 'Partial to use when adding products to basket',
+                'title'       => 'octoshop.core::lang.components.basket.basketPartial',
+                'description' => 'octoshop.core::lang.components.basket.basketPartial_description',
                 'default'     => 'basket/default',
             ],
             'condense' => [
-                'title' => 'Condensed view',
-                'description' => 'Renders the default table with the table-condensed class.',
+                'title' => 'octoshop.core::lang.components.basket.condense',
+                'description' => 'octoshop.core::lang.components.basket.condense_description',
                 'type' => 'string',
             ],
         ];

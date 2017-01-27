@@ -2,6 +2,7 @@
 
 use Closure;
 use Event;
+use Lang;
 use Illuminate\Support\Collection;
 use Illuminate\Session\SessionManager;
 use Illuminate\Database\DatabaseManager;
@@ -191,7 +192,9 @@ class Cart extends Extendable
         $content = $this->getContent();
 
         if (!$content->has($rowId))
-            throw new InvalidRowIDException("The cart does not contain rowId {$rowId}.");
+            throw new InvalidRowIDException(
+                sprintf(Lang::get('octoshop.core::lang.cart.invalid_row'), $rowId)
+            );
 
         return $content->get($rowId);
     }
@@ -303,7 +306,9 @@ class Cart extends Extendable
     public function associate($rowId, $model)
     {
         if(is_string($model) && !class_exists($model)) {
-            throw new UnknownModelException("The supplied model {$model} does not exist.");
+            throw new UnknownModelException(
+                sprintf(Lang::get('octoshop.core::cart.invalid_model'), $model)
+            );
         }
 
         $cartItem = $this->get($rowId);
@@ -335,14 +340,14 @@ class Cart extends Extendable
             $product = $item->product();
 
             if (!$product->is_enabled) {
-                $error = '"%s" could not be found.';
+                $error = sprintf(Lang::get('octoshop.core::lang.cart.product_disabled'), $item->name);
             } elseif ($product->cannotBePurchased()) {
-                $error = '"%s" is currently unavailable.';
+                $error = sprintf(Lang::get('octoshop.core::lang.cart.product_unavailable'), $item->name);
             } elseif ($product->minimum_qty > $item->qty) {
-                $error = '"%s" requires a minimum of '.$product->minimum_qty.' to order.';
+                $error = sprintf(Lang::get('octoshop.core::lang.cart.product_quota'), $item->name, $product->minimum_qty);
             }
 
-            return $error ? sprintf($error, $item->name) : true;
+            return $error ?: true;
         });
 
         Event::fire('cart.validate_items', [$this]);

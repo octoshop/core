@@ -7,8 +7,8 @@ class Products extends ComponentBase
 {
     protected $componentProperties = [
         'productPage' => [
-            'title' => 'octoshop.core::lang.settings.product_page',
-            'description' => 'octoshop.core::lang.settings.product_page_description',
+            'title' => 'octoshop.core::lang.components.products.productPage',
+            'description' => 'octoshop.core::lang.components.products.productPage_description',
             'type' => 'dropdown',
             'default' => 'product',
         ],
@@ -23,8 +23,8 @@ class Products extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'octoshop.core::lang.components.products',
-            'description' => 'octoshop.core::lang.components.products_description',
+            'name' => 'octoshop.core::lang.components.products.name',
+            'description' => 'octoshop.core::lang.components.products.description',
         ];
     }
 
